@@ -1,0 +1,19 @@
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <input ng-model="query" class="form-control" placeholder="Search" />
+      <select ng-model="orderProp">
+        <option value="name">Venue Name</option>
+        <option value="hereNow.count">Least Popular</option>
+        <option value="-hereNow.count">Most Popular</option>
+      </select>
+    </div>
+  <div class="col-md-5">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="venue in venues | filter:query | orderBy:orderProp">
+        <a href="#/venues/{{venue.id}}"><img ng-src="{{venue.categories[0].icon.prefix + '32' + venue.categories[0].icon.suffix}}" /></a>
+        <a href="#/venues/{{venue.id}}">{{venue.name}}</a> - {{venue.hereNow.summary}}
+      </li>
+    </ul>
+  </div>
+</div>
